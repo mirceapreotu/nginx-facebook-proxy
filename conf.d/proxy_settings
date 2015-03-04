@@ -1,0 +1,24 @@
+########################################
+########## Upstream settings ###########
+########################################
+
+upstream application_upstream {
+  server 127.0.0.1:3000;
+}
+
+
+########################################
+####### Facebook module settings #######
+########################################
+
+perl_modules   modules;
+perl_require   facebook.pm;
+perl_set       $fb_request_body facebook::parse_signed_request;
+
+
+########################################
+######## Proxy general settings ########
+########################################
+
+proxy_cache_path  /tmp/nginx/ levels=1:2 keys_zone=application_cache:50m max_size=500m inactive=1h;
+proxy_temp_path   /tmp/nginx/temporary;

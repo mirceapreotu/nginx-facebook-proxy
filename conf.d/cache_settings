@@ -1,0 +1,16 @@
+##############################################
+############ Proxy cache settings ############
+##############################################
+
+proxy_method              GET;
+proxy_set_header          X-FacebookProxy "On";
+proxy_ignore_headers      X-Accel-Expires Expires Cache-Control Set-Cookie;
+proxy_cache_lock          on;
+proxy_cache_lock_timeout  5s;
+proxy_cache_min_uses      1;
+proxy_cache_methods       GET POST;
+proxy_cache               application_cache;
+proxy_cache_key           "$device_type::$scheme::$host::$request_uri::[$fb_request_body]";
+proxy_cache_use_stale     updating;
+proxy_cache_valid         200 302 5s;
+expires                   5s;
